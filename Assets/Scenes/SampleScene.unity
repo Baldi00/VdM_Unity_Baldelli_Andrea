@@ -1454,6 +1454,53 @@ Transform:
   m_Father: {fileID: 1042528514}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &381897955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381897957}
+  - component: {fileID: 381897956}
+  m_Layer: 0
+  m_Name: DrinkSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &381897956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381897955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0cf7e4509644d418de9e27f5d6df75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkPrefab: {fileID: 6835191602191200824, guid: d495b639731ca4741b3d075879de5487,
+    type: 3}
+  force: 5
+--- !u!4 &381897957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381897955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.493, y: 1.4359832, z: -14.943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &394897950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9172952759353888736, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
@@ -2930,6 +2977,72 @@ Transform:
   m_Father: {fileID: 1042528514}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &860969688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 860969690}
+  - component: {fileID: 860969689}
+  m_Layer: 0
+  m_Name: MagicDrinkSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &860969689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860969688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0cf7e4509644d418de9e27f5d6df75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkPrefab: {fileID: 3483852875265920903, guid: 73ccdeaf78de3d34b8ed96ccdf087acb,
+    type: 3}
+  force: 5
+--- !u!4 &860969690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860969688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.741, y: 1.4359832, z: -14.943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &945426147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9069013162968263170, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9069013163424398885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &945426152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945426147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6a79a1f242f2345b2afa59b791ad28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkSpawner: {fileID: 860969689}
 --- !u!1 &973417684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,6 +3366,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9069013163424398885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1205767048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9069013163709080652, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9069013163424398885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1205767053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205767048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6a79a1f242f2345b2afa59b791ad28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkSpawner: {fileID: 381897956}
 --- !u!1 &1215057757
 GameObject:
   m_ObjectHideFlags: 0
@@ -24692,6 +24824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069013162823672500, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013162823672500, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
@@ -24717,6 +24854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069013162968263170, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013162968263170, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
@@ -24729,6 +24871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LightProbeUsage
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013162968979567, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
       objectReference: {fileID: 0}
     - target: {fileID: 9069013162968979567, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
@@ -24902,6 +25049,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069013163700635724, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013163700635724, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
@@ -24922,8 +25074,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069013163709080652, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013163709080652, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013163754929009, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
       objectReference: {fileID: 0}
     - target: {fileID: 9069013163754929009, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
@@ -25042,6 +25204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069013164145286938, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013164145286938, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
@@ -25059,6 +25226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013164223502373, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
       objectReference: {fileID: 0}
     - target: {fileID: 9069013164223502373, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
@@ -25182,6 +25354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069013164659964930, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013164659964930, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
@@ -25194,6 +25371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LightProbeUsage
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069013164803057934, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
+      propertyPath: m_Name
+      value: KitchenChair
       objectReference: {fileID: 0}
     - target: {fileID: 9069013164803057934, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}

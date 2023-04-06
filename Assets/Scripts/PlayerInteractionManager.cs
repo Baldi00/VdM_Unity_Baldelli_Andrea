@@ -21,6 +21,12 @@ public class PlayerInteractionManager : MonoBehaviour
 				currentInteractableObject = hit.collider.GetComponent<IInteractable>();
 				currentInteractableObject.StartHovering();
 			}
+			else if(currentInteractableObject != hit.collider.GetComponent<IInteractable>())
+			{
+                currentInteractableObject.StopHovering();
+                currentInteractableObject = hit.collider.GetComponent<IInteractable>();
+                currentInteractableObject.StartHovering();
+            }
 		}
 		else if(currentInteractableObject != null)
 		{
