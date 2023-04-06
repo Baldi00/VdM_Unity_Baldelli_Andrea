@@ -5,8 +5,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public const float MIN_MOVEMENT_THRESHOLD = 0.1f;
-
     [SerializeField]
     private float cameraHorizontalSpeed = 5f;
     [SerializeField]
@@ -17,12 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private float minCameraAngle = -45f;
     [SerializeField]
     private float walkingSpeed = 3;
-    [SerializeField]
-    private float runSpeed = 5;
-    [SerializeField]
-    private float cameraWalkOffset = 0.25f;
-    [SerializeField]
-    private float cameraRunOffset = 0f;
 
     private Camera cam;
     private CharacterController characterController;
@@ -31,12 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private float currentCameraYRotation = 0.0f;
     private float playerPositionHorizontalShift = 0.0f;
     private float playerPositionVerticalShift = 0.0f;
-
-    private bool _isMoving = false;
-    private bool _isWalking = false;
-    
-    public bool IsMoving { get => _isMoving; }
-    public bool IsWalking { get => _isWalking; }
 
     void Awake()
     {
