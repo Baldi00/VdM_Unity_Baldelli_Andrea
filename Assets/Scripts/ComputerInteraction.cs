@@ -34,7 +34,7 @@ public class ComputerInteraction : MonoBehaviour, IInteractable
         rend.material.color = material.color * 2f;
     }
 
-	public void StartInteraction()
+	public void Interact()
 	{
         pcAndMonitorOn = !pcAndMonitorOn;
         foreach (Renderer screen in screens)
@@ -46,7 +46,15 @@ public class ComputerInteraction : MonoBehaviour, IInteractable
         rend.material.color = material.color;
     }
 
-	public void StopInteraction()
-	{
-	}
+    public void InteractContinuously()
+    {
+    }
+
+    public void StopContinuousInteraction()
+    {
+    }
+
+    public void SecondaryInteraction()
+    {
+    }
 }

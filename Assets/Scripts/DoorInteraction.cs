@@ -60,7 +60,7 @@ public class DoorInteraction : MonoBehaviour, IInteractable
         rend.material.color = material.color * 2f;
     }
 
-	public void StartInteraction()
+	public void Interact()
 	{
         isClosed = !isClosed;
 
@@ -83,7 +83,15 @@ public class DoorInteraction : MonoBehaviour, IInteractable
         rend.material.color = material.color;
     }
 
-	public void StopInteraction()
-	{
-	}
+    public void InteractContinuously()
+    {
+    }
+
+    public void StopContinuousInteraction()
+    {
+    }
+
+    public void SecondaryInteraction()
+    {
+    }
 }

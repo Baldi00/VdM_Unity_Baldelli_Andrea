@@ -28,7 +28,13 @@ public class PlayerInteractionManager : MonoBehaviour
 			currentInteractableObject = null;
 		}
 
-		if(Input.GetKeyDown(KeyCode.Mouse0) && currentInteractableObject != null)
-			currentInteractableObject.StartInteraction();
-	}
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentInteractableObject != null)
+            currentInteractableObject.Interact();
+        if (Input.GetKey(KeyCode.Mouse0) && currentInteractableObject != null)
+            currentInteractableObject.InteractContinuously();
+        if (Input.GetKeyUp(KeyCode.Mouse0) && currentInteractableObject != null)
+            currentInteractableObject.StopContinuousInteraction();
+        if (Input.GetKeyDown(KeyCode.Mouse1) && currentInteractableObject != null)
+            currentInteractableObject.SecondaryInteraction();
+    }
 }
