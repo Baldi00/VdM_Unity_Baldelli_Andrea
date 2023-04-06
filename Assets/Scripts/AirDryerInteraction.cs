@@ -1,0 +1,72 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[DisallowMultipleComponent]
+public class AirDryerInteraction : MonoBehaviour, IInteractable
+{
+    [SerializeField]
+    private Material airDryerOnLightMaterial;
+    [SerializeField]
+    private Material airDryerOffLightMaterial;
+    [SerializeField]
+    private float airDryerOnDuration;
+
+    private Renderer rend;
+    private Material material;
+    private GameObject airDryerLight;
+    private bool isOn;
+    private float timer;
+
+    void Awake()
+    {
+        rend = GetComponent<Renderer>();
+        material = new Material(rend.material);
+        airDryerLight = transform.GetChild(0).gameObject;
+        isOn = false;
+    }
+
+    void Update()
+    {
+        if (isOn)
+        {
+            timer += Time.deltaTime;
+            if(timer >= airDryerOnDuration)
+            {
+                isOn = false;
+                airDryerLight.GetComponent<Renderer>().material = airDryerOffLightMaterial;
+            }
+        }
+    }
+
+    public void StartHovering()
+    {
+        if (!isOn)
+            rend.material.color = material.color * 2f;
+    }
+
+    public void Interact()
+    {
+        isOn = true;
+        timer = 0;
+        rend.material.color = material.color;
+        airDryerLight.GetComponent<Renderer>().material = airDryerOnLightMaterial;
+    }
+
+    public void StopHovering()
+    {
+        rend.material.color = material.color;
+    }
+
+    public void InteractContinuously()
+    {
+    }
+
+    public void StopContinuousInteraction()
+    {
+    }
+
+    public void SecondaryInteraction()
+    {
+    }
+}
