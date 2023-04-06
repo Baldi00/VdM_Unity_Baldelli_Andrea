@@ -14,6 +14,7 @@ public class AirDryerInteraction : MonoBehaviour, IInteractable
 
     private Renderer rend;
     private Material material;
+    private GameObject airDryerMiniLight;
     private GameObject airDryerLight;
     private bool isOn;
     private float timer;
@@ -22,7 +23,8 @@ public class AirDryerInteraction : MonoBehaviour, IInteractable
     {
         rend = GetComponent<Renderer>();
         material = new Material(rend.material);
-        airDryerLight = transform.GetChild(0).gameObject;
+        airDryerMiniLight = transform.GetChild(0).gameObject;
+        airDryerLight = transform.GetChild(1).gameObject;
         isOn = false;
     }
 
@@ -34,7 +36,8 @@ public class AirDryerInteraction : MonoBehaviour, IInteractable
             if(timer >= airDryerOnDuration)
             {
                 isOn = false;
-                airDryerLight.GetComponent<Renderer>().material = airDryerOffLightMaterial;
+                airDryerMiniLight.GetComponent<Renderer>().material = airDryerOffLightMaterial;
+                airDryerLight.SetActive(isOn);
             }
         }
     }
@@ -48,9 +51,10 @@ public class AirDryerInteraction : MonoBehaviour, IInteractable
     public void Interact()
     {
         isOn = true;
+        airDryerLight.SetActive(isOn);
         timer = 0;
         rend.material.color = material.color;
-        airDryerLight.GetComponent<Renderer>().material = airDryerOnLightMaterial;
+        airDryerMiniLight.GetComponent<Renderer>().material = airDryerOnLightMaterial;
     }
 
     public void StopHovering()
