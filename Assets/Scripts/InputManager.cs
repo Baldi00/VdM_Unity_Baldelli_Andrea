@@ -13,6 +13,12 @@ public class InputManager : MonoBehaviour
     private float unusedCurrentVelocity1;
     private float unusedCurrentVelocity2;
 
+    void Awake()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X");
@@ -30,6 +36,5 @@ public class InputManager : MonoBehaviour
         bool primaryInteractionButton = Input.GetKeyDown(KeyCode.Mouse0);
         bool secondaryInteractionButton = Input.GetKeyDown(KeyCode.Mouse1);
         bool primaryInteractionButtonContinous = Input.GetKey(KeyCode.Mouse0);
-
     }
 }
