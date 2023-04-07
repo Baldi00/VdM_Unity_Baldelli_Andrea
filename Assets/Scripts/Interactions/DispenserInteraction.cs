@@ -27,6 +27,7 @@ public class DispenserInteraction : MonoBehaviour, IInteractable
 	public void Interact()
 	{
         drinkSpawner.Spawn();
+        AudioManager.Instance.PlayDispenserBip();
     }
 
 	public void StopHovering()

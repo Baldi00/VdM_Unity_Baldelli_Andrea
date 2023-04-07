@@ -21,6 +21,7 @@ public class WCInteraction : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        AudioManager.Instance.PlayWC();
     }
 
     public void StopHovering()

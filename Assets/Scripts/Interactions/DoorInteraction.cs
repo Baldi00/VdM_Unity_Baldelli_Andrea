@@ -70,11 +70,13 @@ public class DoorInteraction : MonoBehaviour, IInteractable
         {
             currentOpenAngle = currentAngle;
             currentCloseAngle = closedAngle;
+            AudioManager.Instance.PlayDoorClose();
         }
         else
         {
             currentOpenAngle = openAngle;
             currentCloseAngle = currentAngle;
+            AudioManager.Instance.PlayDoorOpen();
         }
 
         animationTimer = 0;

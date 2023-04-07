@@ -55,11 +55,15 @@ public class AirDryerInteraction : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        isOn = true;
-        airDryerLight.SetActive(isOn);
-        timer = 0;
-        rend.material.color = material.color;
-        airDryerMiniLight.GetComponent<Renderer>().material = airDryerOnLightMaterial;
+        if (!isOn)
+        {
+            isOn = true;
+            airDryerLight.SetActive(isOn);
+            timer = 0;
+            rend.material.color = material.color;
+            airDryerMiniLight.GetComponent<Renderer>().material = airDryerOnLightMaterial;
+            AudioManager.Instance.PlayDryer();
+        }
     }
 
     public void StopHovering()

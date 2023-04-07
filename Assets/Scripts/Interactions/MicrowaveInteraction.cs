@@ -27,6 +27,7 @@ public class MicrowaveInteraction : MonoBehaviour, IInteractable
     {
         SetState(!isOn);
         GameManager.Instance.SetMicrowaveState(isOn);
+        AudioManager.Instance.PlayMicrowave(isOn);
     }
 
     public void StopHovering()
@@ -38,6 +39,8 @@ public class MicrowaveInteraction : MonoBehaviour, IInteractable
     {
         isOn = state;
         microwaveLight.SetActive(isOn);
+        if(isOn)
+            AudioManager.Instance.PlayMicrowave(true);
     }
 
     public void InteractContinuously()

@@ -38,9 +38,16 @@ public class HandWasherInteraction : MonoBehaviour, IInteractable
     {
         isOpened = state;
         if (isOpened)
+        {
             water.Play();
+            AudioManager.Instance.PlayHandWasher();
+        }
         else
+        {
             water.Stop();
+            AudioManager.Instance.StopHandWasher();
+        }
+
     }
 
     public void InteractContinuously()

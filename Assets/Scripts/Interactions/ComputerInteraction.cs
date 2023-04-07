@@ -38,6 +38,7 @@ public class ComputerInteraction : MonoBehaviour, IInteractable
 	{
         SetPCState(!pcAndMonitorOn);
         GameManager.Instance.SetPCState(this, pcAndMonitorOn);
+        AudioManager.Instance.PlayPcButtonPressed();
 	}
 
 	public void StopHovering()
