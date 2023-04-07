@@ -4,7 +4,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class SavesManager
 {
-    public static void Save(string fileName, GameState gameState)
+    public static void SaveState(string fileName, GameState gameState)
     {
         string path = GetSaveFilePath(fileName);
         string dir = Path.GetDirectoryName(path);
@@ -14,7 +14,24 @@ public class SavesManager
         File.WriteAllText(path, JsonUtility.ToJson(gameState));
     }
 
-    public static GameState Load(string fileName)
+    public static void SaveBlackboardTexture(string fileName, Texture2D texture)
+    {
+        byte[] bytes = texture.EncodeToPNG();
+        string path = GetSaveFilePath(fileName);
+        File.WriteAllBytes(path, bytes);
+    }
+
+    public static void LoadBlackboardTexture(string fileName, ref Texture2D texture)
+    {
+        string path = GetSaveFilePath(fileName);
+        if (File.Exists(path))
+        {
+            byte[] fileData = File.ReadAllBytes(path);
+            texture.LoadImage(fileData);
+        }
+    }
+
+    public static GameState LoadState(string fileName)
     {
         string path = GetSaveFilePath(fileName);
 

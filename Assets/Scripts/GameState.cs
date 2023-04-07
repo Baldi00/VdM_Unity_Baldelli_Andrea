@@ -11,7 +11,6 @@ public class GameState
     public bool[] burntPCsState;
     public bool microwaveState;
     public bool handWasherState;
-    public Texture blackboardTexture;
     public List<DrinkInfo> drinksInfo;
 
     public GameState(int doorsCount, int PCsCount, int TVsCount, int burntPCsCount)

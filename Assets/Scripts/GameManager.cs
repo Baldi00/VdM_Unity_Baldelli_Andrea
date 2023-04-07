@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private string saveFileName;
+    [SerializeField]
+    private string blackBoardTextureFileName;
 
     [SerializeField]
     private ComputerInteraction[] pcs;
@@ -29,8 +32,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject magicDrinkPrefab;
 
+    [SerializeField]
+    private RenderTexture blackboardRenderTexture;
+    [SerializeField]
+    private Renderer savedBlackboardTextureRenderer;
+
     private GameState currentGameState;
     private Dictionary<Transform, DrinkInfo> drinks;
+    private Texture2D blackboardTexture2d;
 
     void Awake()
     {
@@ -46,11 +55,19 @@ public class GameManager : MonoBehaviour
     {
         if (SavesManager.IsSavePresent(SavesManager.GetSaveFilePath(saveFileName)))
         {
-            currentGameState = SavesManager.Load(saveFileName);
+            currentGameState = SavesManager.LoadState(saveFileName);
             ApplySavesInGame();
         }
         else
             currentGameState = new GameState(doors.Length, pcs.Length, tvs.Length, burntPcs.Length);
+
+        if (SavesManager.IsSavePresent(SavesManager.GetSaveFilePath(blackBoardTextureFileName)))
+        {
+            blackboardTexture2d = blackboardRenderTexture.ToTexture2D();
+            SavesManager.LoadBlackboardTexture(blackBoardTextureFileName, ref blackboardTexture2d);
+            savedBlackboardTextureRenderer.material.mainTexture = blackboardTexture2d;
+            savedBlackboardTextureRenderer.material.color = Color.white;
+        }
     }
 
     void Update()
@@ -58,7 +75,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             SaveDrinkPositions();
-            SavesManager.Save(saveFileName, currentGameState);
+            SavesManager.SaveState(saveFileName, currentGameState);
+
+            blackboardTexture2d = blackboardRenderTexture.ToTexture2D();
+            SavesManager.SaveBlackboardTexture(blackBoardTextureFileName, blackboardTexture2d);
         }
     }
 
@@ -66,6 +86,7 @@ public class GameManager : MonoBehaviour
     public void DeleteSaves()
     {
         SavesManager.DeleteSaves(saveFileName);
+        SavesManager.DeleteSaves(blackBoardTextureFileName);
     }
 
     public void SetDoorState(DoorInteraction door, bool state)
@@ -101,6 +122,11 @@ public class GameManager : MonoBehaviour
     public void AddDrink(Transform drinkTransform, DrinkInfo drinkInfo)
     {
         drinks.Add(drinkTransform, drinkInfo);
+    }
+
+    public void ClearSavedBlackboardTexture()
+    {
+        savedBlackboardTextureRenderer.material.color = Color.black;
     }
 
     private void ApplySavesInGame()

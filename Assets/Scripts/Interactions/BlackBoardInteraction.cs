@@ -57,5 +57,6 @@ public class BlackBoardInteraction : MonoBehaviour, IInteractable
     {
 		foreach (GameObject virtualPen in virtualPens)
 			Destroy(virtualPen);
+		GameManager.Instance.ClearSavedBlackboardTexture();
     }
 }
