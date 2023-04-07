@@ -25,16 +25,22 @@ public class HandWasherInteraction : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        isOpened = !isOpened;
-        if (isOpened)
-            water.Play();
-        else
-            water.Stop();
+        SetState(!isOpened);
+        GameManager.Instance.SetHandWasherState(isOpened);
     }
 
     public void StopHovering()
     {
         rend.material.color = material.color;
+    }
+
+    public void SetState(bool state)
+    {
+        isOpened = state;
+        if (isOpened)
+            water.Play();
+        else
+            water.Stop();
     }
 
     public void InteractContinuously()

@@ -25,13 +25,19 @@ public class MicrowaveInteraction : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        isOn = !isOn;
-        microwaveLight.SetActive(isOn);
+        SetState(!isOn);
+        GameManager.Instance.SetMicrowaveState(isOn);
     }
 
     public void StopHovering()
     {
         rend.material.color = material.color;
+    }
+
+    public void SetState(bool state)
+    {
+        isOn = state;
+        microwaveLight.SetActive(isOn);
     }
 
     public void InteractContinuously()

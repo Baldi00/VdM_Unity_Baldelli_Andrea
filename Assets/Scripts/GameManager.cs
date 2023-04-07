@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     private TVInteraction[] tvs;
     [SerializeField]
     private ComputerInteraction[] burntPcs;
+    [SerializeField]
+    private MicrowaveInteraction microwave;
+    [SerializeField]
+    private HandWasherInteraction handWasher;
 
     private GameState currentGameState;
 
@@ -76,6 +80,16 @@ public class GameManager : MonoBehaviour
         currentGameState.SetBurntPCState(System.Array.IndexOf<ComputerInteraction>(burntPcs, pc), state);
     }
 
+    public void SetMicrowaveState(bool state)
+    {
+        currentGameState.microwaveState = state;
+    }
+
+    public void SetHandWasherState(bool state)
+    {
+        currentGameState.handWasherState = state;
+    }
+
     private void ApplySavesInGame()
     {
         for (int i = 0; i < currentGameState.pcsState.Length; i++)
@@ -89,5 +103,8 @@ public class GameManager : MonoBehaviour
 
         //for (int i = 0; i < currentGameState.PCsState.Length; i++)
         //    pcs[i].SetPCState(currentGameState.PCsState[i]);
+
+        microwave.SetState(currentGameState.microwaveState);
+        handWasher.SetState(currentGameState.handWasherState);
     }
 }
