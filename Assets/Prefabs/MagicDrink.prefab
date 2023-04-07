@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3784405984309689510}
   - component: {fileID: -3032852845772887243}
   m_Layer: 0
-  m_Name: MagicCola
+  m_Name: MagicDrink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

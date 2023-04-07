@@ -569,6 +569,10 @@ MonoBehaviour:
   burntPcs: []
   microwave: {fileID: 444186569}
   handWasher: {fileID: 2042809202}
+  standardDrinkPrefab: {fileID: 6835191602191200824, guid: d495b639731ca4741b3d075879de5487,
+    type: 3}
+  magicDrinkPrefab: {fileID: 3483852875265920903, guid: 73ccdeaf78de3d34b8ed96ccdf087acb,
+    type: 3}
 --- !u!1 &272326525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1114,7 @@ MonoBehaviour:
   drinkPrefab: {fileID: 6835191602191200824, guid: d495b639731ca4741b3d075879de5487,
     type: 3}
   force: 5
+  magicDrinkSpawner: 0
 --- !u!4 &381897957
 Transform:
   m_ObjectHideFlags: 0
@@ -2341,6 +2346,7 @@ MonoBehaviour:
   drinkPrefab: {fileID: 3483852875265920903, guid: 73ccdeaf78de3d34b8ed96ccdf087acb,
     type: 3}
   force: 5
+  magicDrinkSpawner: 1
 --- !u!4 &860969690
 Transform:
   m_ObjectHideFlags: 0

@@ -24,7 +24,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private HandWasherInteraction handWasher;
 
+    [SerializeField]
+    private GameObject standardDrinkPrefab;
+    [SerializeField]
+    private GameObject magicDrinkPrefab;
+
     private GameState currentGameState;
+    private Dictionary<Transform, DrinkInfo> drinks;
 
     void Awake()
     {
@@ -32,6 +38,8 @@ public class GameManager : MonoBehaviour
             _instance = this;
         else if (_instance != this)
             Destroy(gameObject);
+
+        drinks = new Dictionary<Transform, DrinkInfo>();
     }
 
     void Start()
@@ -49,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            //drink positions
+            SaveDrinkPositions();
             SavesManager.Save(saveFileName, currentGameState);
         }
     }
@@ -90,6 +98,11 @@ public class GameManager : MonoBehaviour
         currentGameState.handWasherState = state;
     }
 
+    public void AddDrink(Transform drinkTransform, DrinkInfo drinkInfo)
+    {
+        drinks.Add(drinkTransform, drinkInfo);
+    }
+
     private void ApplySavesInGame()
     {
         for (int i = 0; i < currentGameState.pcsState.Length; i++)
@@ -106,5 +119,32 @@ public class GameManager : MonoBehaviour
 
         microwave.SetState(currentGameState.microwaveState);
         handWasher.SetState(currentGameState.handWasherState);
+
+        foreach(DrinkInfo drinkInfo in currentGameState.drinksInfo)
+        {
+            GameObject drink;
+            if(drinkInfo.isMagic)
+                drink = Instantiate(magicDrinkPrefab, drinkInfo.position, drinkInfo.rotation);
+            else
+                drink = Instantiate(standardDrinkPrefab, drinkInfo.position, drinkInfo.rotation);
+
+            drink.GetComponent<Renderer>().material.color = drinkInfo.color;
+
+            if (drinkInfo.isMagic)
+                drink.GetComponent<Light>().color = drinkInfo.color;
+
+            AddDrink(drink.transform, drinkInfo);
+        }
+    }
+
+    private void SaveDrinkPositions()
+    {
+        foreach(KeyValuePair<Transform, DrinkInfo> drink in drinks)
+        {
+            DrinkInfo drinkInfo = drink.Value;
+            drinkInfo.position = drink.Key.position;
+            drinkInfo.rotation = drink.Key.rotation;
+            currentGameState.AddDrink(drinkInfo);
+        }
     }
 }

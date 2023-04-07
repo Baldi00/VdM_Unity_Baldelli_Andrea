@@ -12,7 +12,7 @@ public class GameState
     public bool microwaveState;
     public bool handWasherState;
     public Texture blackboardTexture;
-    public List<Vector3> drinksPositions;
+    public List<DrinkInfo> drinksInfo;
 
     public GameState(int doorsCount, int PCsCount, int TVsCount, int burntPCsCount)
     {
@@ -21,7 +21,7 @@ public class GameState
         tvsState = new bool[TVsCount];
         burntPCsState = new bool[burntPCsCount];
 
-        drinksPositions = new List<Vector3>();
+        drinksInfo = new List<DrinkInfo>();
     }
 
     public void SetPCState(int index, bool state)
@@ -48,8 +48,8 @@ public class GameState
             burntPCsState[index] = state;
     }
 
-    public void AddDrinkPosition(Vector3 drinkPosition)
+    public void AddDrink(DrinkInfo drinkInfo)
     {
-        drinksPositions.Add(drinkPosition);
+        drinksInfo.Add(drinkInfo);
     }
 }
