@@ -36,14 +36,20 @@ public class ComputerInteraction : MonoBehaviour, IInteractable
 
 	public void Interact()
 	{
-        pcAndMonitorOn = !pcAndMonitorOn;
-        foreach (Renderer screen in screens)
-            screen.material = pcAndMonitorOn ? monitorOnMaterial : monitorOffMaterial;
+        SetPCState(!pcAndMonitorOn);
+        GameManager.Instance.SetPCState(this, pcAndMonitorOn);
 	}
 
 	public void StopHovering()
     {
         rend.material.color = material.color;
+    }
+
+    public void SetPCState(bool pcAndMonitorOn)
+    {
+        this.pcAndMonitorOn = pcAndMonitorOn;
+        foreach (Renderer screen in screens)
+            screen.material = pcAndMonitorOn ? monitorOnMaterial : monitorOffMaterial;
     }
 
     public void InteractContinuously()

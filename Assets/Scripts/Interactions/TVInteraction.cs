@@ -31,15 +31,21 @@ public class TVInteraction : MonoBehaviour, IInteractable
 
 	public void Interact()
 	{
-        tvOn = !tvOn;
-        currentMaterial = tvOn ? tvOnMaterial : tvOffMaterial;
-        screenRenderer.material = currentMaterial;
+        SetTVState(!tvOn);
+        GameManager.Instance.SetTVState(this, tvOn);
         screenRenderer.material.color = currentMaterial.color * 2f;
     }
 
 	public void StopHovering()
     {
         screenRenderer.material.color = currentMaterial.color;
+    }
+
+    public void SetTVState(bool tvOn)
+    {
+        this.tvOn = tvOn;
+        currentMaterial = tvOn ? tvOnMaterial : tvOffMaterial;
+        screenRenderer.material = currentMaterial;
     }
 
     public void InteractContinuously()

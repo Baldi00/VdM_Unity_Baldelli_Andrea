@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.Device;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Renderer))]
@@ -63,6 +64,7 @@ public class DoorInteraction : MonoBehaviour, IInteractable
 	public void Interact()
 	{
         isClosed = !isClosed;
+        GameManager.Instance.SetDoorState(this, isClosed);
 
         if (isClosed)
         {
@@ -81,6 +83,22 @@ public class DoorInteraction : MonoBehaviour, IInteractable
 	public void StopHovering()
     {
         rend.material.color = material.color;
+    }
+    public void SetDoorState(bool isClosed)
+    {
+        this.isClosed = isClosed;
+
+        if (isClosed)
+        {
+            transform.parent.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, closedAngle, transform.parent.rotation.eulerAngles.z);
+            startAngle = closedAngle;
+        }
+        else
+        {
+            transform.parent.rotation = Quaternion.Euler(transform.parent.rotation.eulerAngles.x, openAngle, transform.parent.rotation.eulerAngles.z);
+            startAngle = openAngle;
+        }
+        currentAngle = startAngle;
     }
 
     public void InteractContinuously()
