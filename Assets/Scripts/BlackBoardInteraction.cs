@@ -49,7 +49,8 @@ public class BlackBoardInteraction : MonoBehaviour, IInteractable
 	}
 
 	public void StopHovering()
-	{
+    {
+        currentPen = null;
     }
 
     public void SecondaryInteraction()
