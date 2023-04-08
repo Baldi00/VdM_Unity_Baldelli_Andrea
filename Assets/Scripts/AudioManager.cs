@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource microwaveAS;
     [SerializeField]
     private AudioSource wcAS;
+    [SerializeField]
+    private AudioSource panicButtonAS;
 
     public AudioClip trafficNoise;
     public AudioClip backgroundMusic;
@@ -34,6 +36,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip microwaveEnd;
     public AudioClip pcButtonPressed;
     public AudioClip wc;
+    public AudioClip panicButton;
 
     void Awake()
     {
@@ -49,6 +52,7 @@ public class AudioManager : MonoBehaviour
         dryerAS.clip = dryer;
         handWasherAS.clip = handWasher;
         wcAS.clip = wc;
+        panicButtonAS.clip = panicButton;
     }
 
     public void PlayDispenserBip() => soundEffects2dAS.PlayOneShot(dispenserBip);
@@ -58,6 +62,7 @@ public class AudioManager : MonoBehaviour
     public void StopHandWasher() => handWasherAS.Stop();
     public void PlayDryer() => dryerAS.Play();
     public void PlayWC() => wcAS.Play();
+    public void PlayPanicButton() => panicButtonAS.Play();
     public void PlayPcButtonPressed() => soundEffects2dAS.PlayOneShot(pcButtonPressed);
 
     public void PlayMicrowave(bool running)
