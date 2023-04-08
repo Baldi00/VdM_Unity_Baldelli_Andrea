@@ -90,7 +90,12 @@ public class GameManager : MonoBehaviour
             ApplySavesInGame();
         }
         else
+        {
             currentGameState = new GameState(doors.Length, pcs.Length, tvs.Length);
+            currentGameState.ambientVolume = 1f;
+            currentGameState.musicVolume = 1f;
+            currentGameState.effectsVolume = 1f;
+        }
 
         if (SavesManager.IsSavePresent(SavesManager.GetSaveFilePath(blackBoardTextureFileName)))
         {
