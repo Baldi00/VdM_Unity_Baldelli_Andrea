@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [DisallowMultipleComponent]
 public class GameManager : MonoBehaviour
@@ -15,13 +16,14 @@ public class GameManager : MonoBehaviour
     private string blackBoardTextureFileName;
 
     [SerializeField]
+    private Transform player;
+
+    [SerializeField]
     private ComputerInteraction[] pcs;
     [SerializeField]
     private DoorInteraction[] doors;
     [SerializeField]
     private TVInteraction[] tvs;
-    [SerializeField]
-    private ComputerInteraction[] burntPcs;
     [SerializeField]
     private MicrowaveInteraction microwave;
     [SerializeField]
@@ -37,9 +39,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Renderer savedBlackboardTextureRenderer;
 
+    [SerializeField]
+    private AudioMixer audioMixer;
+    [SerializeField]
+    private PauseMenuManager pauseMenuManager;
+
     private GameState currentGameState;
     private Dictionary<Transform, DrinkInfo> drinks;
     private Texture2D blackboardTexture2d;
+
+    public bool IsPaused;
 
     void Awake()
     {
@@ -65,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
+        currentGameState.playerPosition = player.position;
         SaveDrinkPositions();
         SavesManager.SaveState(saveFileName, currentGameState);
 
@@ -80,7 +90,7 @@ public class GameManager : MonoBehaviour
             ApplySavesInGame();
         }
         else
-            currentGameState = new GameState(doors.Length, pcs.Length, tvs.Length, burntPcs.Length);
+            currentGameState = new GameState(doors.Length, pcs.Length, tvs.Length);
 
         if (SavesManager.IsSavePresent(SavesManager.GetSaveFilePath(blackBoardTextureFileName)))
         {
@@ -106,11 +116,6 @@ public class GameManager : MonoBehaviour
         currentGameState.SetTVState(System.Array.IndexOf<TVInteraction>(tvs, tv), state);
     }
 
-    public void SetBurntPCStateState(ComputerInteraction pc, bool state)
-    {
-        currentGameState.SetBurntPCState(System.Array.IndexOf<ComputerInteraction>(burntPcs, pc), state);
-    }
-
     public void SetMicrowaveState(bool state)
     {
         currentGameState.microwaveState = state;
@@ -119,6 +124,21 @@ public class GameManager : MonoBehaviour
     public void SetHandWasherState(bool state)
     {
         currentGameState.handWasherState = state;
+    }
+
+    public void SetAmbientVolume(float ambientVolume)
+    {
+        currentGameState.ambientVolume = ambientVolume;
+    }
+
+    public void SetMusicVolume(float musicVolume)
+    {
+        currentGameState.musicVolume = musicVolume;
+    }
+
+    public void SetEffectsVolume(float effectsVolume)
+    {
+        currentGameState.effectsVolume = effectsVolume;
     }
 
     public void AddDrink(Transform drinkTransform, DrinkInfo drinkInfo)
@@ -133,6 +153,8 @@ public class GameManager : MonoBehaviour
 
     private void ApplySavesInGame()
     {
+        player.position = currentGameState.playerPosition;
+
         for (int i = 0; i < currentGameState.pcsState.Length; i++)
             pcs[i].SetPCState(currentGameState.pcsState[i]);
 
@@ -141,9 +163,6 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < currentGameState.tvsState.Length; i++)
             tvs[i].SetTVState(currentGameState.tvsState[i]);
-
-        //for (int i = 0; i < currentGameState.PCsState.Length; i++)
-        //    pcs[i].SetPCState(currentGameState.PCsState[i]);
 
         microwave.SetState(currentGameState.microwaveState);
         handWasher.SetState(currentGameState.handWasherState);
@@ -163,6 +182,14 @@ public class GameManager : MonoBehaviour
 
             AddDrink(drink.transform, drinkInfo);
         }
+
+        audioMixer.SetFloat("AmbientVolume", Mathf.Log10(currentGameState.ambientVolume) * 20);
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(currentGameState.musicVolume) * 20);
+        audioMixer.SetFloat("EffectsVolume", Mathf.Log10(currentGameState.effectsVolume) * 20);
+
+        pauseMenuManager.SetAmbientVolumeSliderValue(currentGameState.ambientVolume);
+        pauseMenuManager.SetMusicVolumeSliderValue(currentGameState.musicVolume);
+        pauseMenuManager.SetEffectsVolumeSliderValue(currentGameState.effectsVolume);
     }
 
     private void SaveDrinkPositions()

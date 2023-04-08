@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class PauseMenuManager : MonoBehaviour
 	[SerializeField]
     private AudioMixer audioMixer;
 	[SerializeField]
-    private InputManager inputManager;
+	private Slider ambientVolumeSlider;
 	[SerializeField]
-	private GameManager gameManager;
+	private Slider musicVolumeSlider;
+	[SerializeField]
+	private Slider effectsVolumeSlider;
 
     private bool isPaused;
 
@@ -20,10 +23,9 @@ public class PauseMenuManager : MonoBehaviour
     {
     	if (Input.GetKeyDown(KeyCode.Escape))
     	{
-    		isPaused = !isPaused;
-    		inputManager.SetPaused(isPaused);
+    		GameManager.Instance.IsPaused = !GameManager.Instance.IsPaused;
 
-    		if (isPaused)
+    		if (GameManager.Instance.IsPaused)
     		{
     			Cursor.visible = true;
     			pauseMenu.SetActive(true);
@@ -40,8 +42,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Resume()
     {
-    	isPaused = false;
-    	inputManager.SetPaused(isPaused);
+    	GameManager.Instance.IsPaused = false;
     	Cursor.visible = false;
     	pauseMenu.SetActive(false);
     	Time.timeScale = 1f;
@@ -49,7 +50,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Save()
     {
-    	gameManager.Save();
+    	GameManager.Instance.Save();
     }
 
     public void Exit()
@@ -60,15 +61,33 @@ public class PauseMenuManager : MonoBehaviour
     public void SetAmbientVolume(float value)
     {
     	audioMixer.SetFloat("AmbientVolume", Mathf.Log10(value) * 20);
+    	GameManager.Instance.SetAmbientVolume(value);
     }
 
     public void SetMusicVolume(float value)
     {
     	audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
+    	GameManager.Instance.SetMusicVolume(value);
     }
 
     public void SetEffectsVolume(float value)
     {
     	audioMixer.SetFloat("EffectsVolume", Mathf.Log10(value) * 20);
+    	GameManager.Instance.SetEffectsVolume(value);
+    }
+
+    public void SetAmbientVolumeSliderValue(float value)
+    {
+    	ambientVolumeSlider.value = value;
+    }
+
+    public void SetMusicVolumeSliderValue(float value)
+    {
+    	musicVolumeSlider.value = value;
+    }
+
+    public void SetEffectsVolumeSliderValue(float value)
+    {
+    	effectsVolumeSlider.value = value;
     }
 }

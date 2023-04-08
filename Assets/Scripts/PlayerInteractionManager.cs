@@ -13,6 +13,9 @@ public class PlayerInteractionManager : MonoBehaviour
 
 	void Update()
 	{
+		if(GameManager.Instance.IsPaused)
+			return;
+
 		ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 		if(Physics.Raycast(ray, out RaycastHit hit, maxDistance, ~LayerMask.NameToLayer("Interactable")))
 		{

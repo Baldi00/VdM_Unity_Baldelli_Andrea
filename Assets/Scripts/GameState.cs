@@ -5,20 +5,24 @@ using UnityEngine;
 [Serializable]
 public class GameState
 {
+    public Vector3 playerPosition;
 	public bool[] doorsState;
     public bool[] pcsState;
     public bool[] tvsState;
-    public bool[] burntPCsState;
     public bool microwaveState;
     public bool handWasherState;
+    public bool pcBurnt;
     public List<DrinkInfo> drinksInfo;
 
-    public GameState(int doorsCount, int PCsCount, int TVsCount, int burntPCsCount)
+    public float ambientVolume;
+    public float musicVolume;
+    public float effectsVolume;
+
+    public GameState(int doorsCount, int PCsCount, int TVsCount)
     {
         doorsState = new bool[doorsCount];
         pcsState = new bool[PCsCount];
         tvsState = new bool[TVsCount];
-        burntPCsState = new bool[burntPCsCount];
 
         drinksInfo = new List<DrinkInfo>();
     }
@@ -39,12 +43,6 @@ public class GameState
     {
         if (index >= 0 && index < tvsState.Length)
             tvsState[index] = state;
-    }
-
-    public void SetBurntPCState(int index, bool state)
-    {
-        if (index >= 0 && index < burntPCsState.Length)
-            burntPCsState[index] = state;
     }
 
     public void AddDrink(DrinkInfo drinkInfo)

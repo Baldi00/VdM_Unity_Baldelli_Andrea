@@ -12,7 +12,6 @@ public class InputManager : MonoBehaviour
     private float currentVertical;
     private float unusedCurrentVelocity1;
     private float unusedCurrentVelocity2;
-    private bool isPaused;
 
     void Awake()
     {
@@ -22,7 +21,7 @@ public class InputManager : MonoBehaviour
 
     void OnApplicationFocus(bool hasFocus)
     {
-        if (hasFocus && !isPaused)
+        if (hasFocus && !GameManager.Instance.IsPaused)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
@@ -40,15 +39,10 @@ public class InputManager : MonoBehaviour
         currentHorizontal = horizontalInput;
         currentVertical = verticalInput;
 
-        if(!isPaused)
+        if(!GameManager.Instance.IsPaused)
         {
             playerMovement.SetNextCameraRotation(mouseX, mouseY);
             playerMovement.SetNextPlayerPosition(currentHorizontal, currentVertical);
         }
-    }
-
-    public void SetPaused(bool isPaused)
-    {
-        this.isPaused = isPaused;
     }
 }

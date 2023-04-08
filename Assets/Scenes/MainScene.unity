@@ -403,13 +403,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 892024704}
   m_HandleRect: {fileID: 1424721247}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473016187}
+        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+        m_MethodName: SetEffectsVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &80250091 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7656304086864169573, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
@@ -812,13 +824,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 766709369}
   m_HandleRect: {fileID: 1745795734}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473016187}
+        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &219431998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2695685901030124180, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
@@ -903,6 +927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveFileName: save0
   blackBoardTextureFileName: bbtex.png
+  player: {fileID: 2066726824}
   pcs:
   - {fileID: 1678971361}
   - {fileID: 252086815}
@@ -936,7 +961,6 @@ MonoBehaviour:
   tvs:
   - {fileID: 1259879868}
   - {fileID: 535762791}
-  burntPcs: []
   microwave: {fileID: 444186569}
   handWasher: {fileID: 2042809202}
   standardDrinkPrefab: {fileID: 6835191602191200824, guid: d495b639731ca4741b3d075879de5487,
@@ -946,6 +970,9 @@ MonoBehaviour:
   blackboardRenderTexture: {fileID: 8400000, guid: 343eb7d9a17284044ab3fa6273dca0fd,
     type: 2}
   savedBlackboardTextureRenderer: {fileID: 444248746}
+  audioMixer: {fileID: 24100000, guid: 2d3d5a00297bccb4986a75692b609e61, type: 2}
+  pauseMenuManager: {fileID: 473016187}
+  IsPaused: 0
 --- !u!1 &272326525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,7 +2214,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2479,11 +2506,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 473016186}
+  - component: {fileID: 473016187}
   - component: {fileID: 473016185}
   - component: {fileID: 473016184}
   - component: {fileID: 473016183}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2572,6 +2600,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &473016187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473016182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161464b9a78412e4dbd81f6cf69ec273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 550402258}
+  audioMixer: {fileID: 24100000, guid: 2d3d5a00297bccb4986a75692b609e61, type: 2}
+  ambientVolumeSlider: {fileID: 1466927771}
+  musicVolumeSlider: {fileID: 201361652}
+  effectsVolumeSlider: {fileID: 74638765}
 --- !u!1 &508977699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,7 +2771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &550402259
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3052,7 +3097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 632802341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473016187}
+        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &632802341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3677,7 +3734,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4107,7 +4164,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4182,8 +4239,8 @@ RectTransform:
   m_Father: {fileID: 2021984284}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5610,8 +5667,8 @@ RectTransform:
   m_Father: {fileID: 1450794435}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5845,13 +5902,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 443235630}
   m_HandleRect: {fileID: 972396485}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473016187}
+        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+        m_MethodName: SetAmbientVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1469660907
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,7 +6215,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1576263628}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473016187}
+        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1576263628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11684,8 +11765,8 @@ RectTransform:
   m_Father: {fileID: 2096790969}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16895,7 +16976,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1986242785}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473016187}
+        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1986242785
 MonoBehaviour:
   m_ObjectHideFlags: 0
