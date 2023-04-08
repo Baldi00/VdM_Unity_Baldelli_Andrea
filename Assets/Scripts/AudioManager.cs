@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip pcButtonPressed;
     public AudioClip wc;
     public AudioClip panicButton;
+    public AudioClip pcExplosion;
 
     void Awake()
     {
@@ -63,6 +64,7 @@ public class AudioManager : MonoBehaviour
     public void PlayDryer() => dryerAS.Play();
     public void PlayWC() => wcAS.Play();
     public void PlayPanicButton() => panicButtonAS.Play();
+    public void PlayPcExplosion() => soundEffects2dAS.PlayOneShot(pcExplosion);
     public void PlayPcButtonPressed() => soundEffects2dAS.PlayOneShot(pcButtonPressed);
 
     public void PlayMicrowave(bool running)

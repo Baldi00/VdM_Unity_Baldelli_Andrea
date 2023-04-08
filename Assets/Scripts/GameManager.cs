@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private MicrowaveInteraction microwave;
     [SerializeField]
     private HandWasherInteraction handWasher;
+    [SerializeField]
+    private ExplosiveComputerInteraction explosivePc;
 
     [SerializeField]
     private GameObject standardDrinkPrefab;
@@ -156,6 +158,11 @@ public class GameManager : MonoBehaviour
         savedBlackboardTextureRenderer.material.color = Color.black;
     }
 
+    public void SetBurntPCState(bool burnt)
+    {
+        currentGameState.pcBurnt = burnt;
+    }
+
     private void ApplySavesInGame()
     {
         player.position = currentGameState.playerPosition;
@@ -195,6 +202,8 @@ public class GameManager : MonoBehaviour
         pauseMenuManager.SetAmbientVolumeSliderValue(currentGameState.ambientVolume);
         pauseMenuManager.SetMusicVolumeSliderValue(currentGameState.musicVolume);
         pauseMenuManager.SetEffectsVolumeSliderValue(currentGameState.effectsVolume);
+
+        explosivePc.SetPCState(currentGameState.pcBurnt);
     }
 
     private void SaveDrinkPositions()
