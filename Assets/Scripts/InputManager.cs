@@ -12,15 +12,17 @@ public class InputManager : MonoBehaviour
     private float currentVertical;
     private float unusedCurrentVelocity1;
     private float unusedCurrentVelocity2;
+    private bool isPaused;
 
     void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
+
     void OnApplicationFocus(bool hasFocus)
     {
-        if (hasFocus)
+        if (hasFocus && !isPaused)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
@@ -38,11 +40,15 @@ public class InputManager : MonoBehaviour
         currentHorizontal = horizontalInput;
         currentVertical = verticalInput;
 
-        playerMovement.SetNextCameraRotation(mouseX, mouseY);
-        playerMovement.SetNextPlayerPosition(currentHorizontal, currentVertical);
+        if(!isPaused)
+        {
+            playerMovement.SetNextCameraRotation(mouseX, mouseY);
+            playerMovement.SetNextPlayerPosition(currentHorizontal, currentVertical);
+        }
+    }
 
-        bool primaryInteractionButton = Input.GetKeyDown(KeyCode.Mouse0);
-        bool secondaryInteractionButton = Input.GetKeyDown(KeyCode.Mouse1);
-        bool primaryInteractionButtonContinous = Input.GetKey(KeyCode.Mouse0);
+    public void SetPaused(bool isPaused)
+    {
+        this.isPaused = isPaused;
     }
 }

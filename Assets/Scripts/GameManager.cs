@@ -53,6 +53,27 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        LoadSavesIfPresent();
+    }
+
+    [ContextMenu("Delete Saves")]
+    public void DeleteSaves()
+    {
+        SavesManager.DeleteSaves(saveFileName);
+        SavesManager.DeleteSaves(blackBoardTextureFileName);
+    }
+
+    public void Save()
+    {
+        SaveDrinkPositions();
+        SavesManager.SaveState(saveFileName, currentGameState);
+
+        blackboardTexture2d = blackboardRenderTexture.ToTexture2D();
+        SavesManager.SaveBlackboardTexture(blackBoardTextureFileName, blackboardTexture2d);
+    }
+
+    public void LoadSavesIfPresent()
+    {
         if (SavesManager.IsSavePresent(SavesManager.GetSaveFilePath(saveFileName)))
         {
             currentGameState = SavesManager.LoadState(saveFileName);
@@ -68,25 +89,6 @@ public class GameManager : MonoBehaviour
             savedBlackboardTextureRenderer.material.mainTexture = blackboardTexture2d;
             savedBlackboardTextureRenderer.material.color = Color.white;
         }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SaveDrinkPositions();
-            SavesManager.SaveState(saveFileName, currentGameState);
-
-            blackboardTexture2d = blackboardRenderTexture.ToTexture2D();
-            SavesManager.SaveBlackboardTexture(blackBoardTextureFileName, blackboardTexture2d);
-        }
-    }
-
-    [ContextMenu("Delete Saves")]
-    public void DeleteSaves()
-    {
-        SavesManager.DeleteSaves(saveFileName);
-        SavesManager.DeleteSaves(blackBoardTextureFileName);
     }
 
     public void SetDoorState(DoorInteraction door, bool state)
