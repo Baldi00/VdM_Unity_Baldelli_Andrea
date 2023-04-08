@@ -4,7 +4,7 @@
 
 | Requirement | Feature | State |
 |---------------|:-----:|:-----:|
-|UI|Initial menu<br>Pause Menu<br>InGame UI<br>Scenes fade|🟢<br>🟢<br>🔴<br>🔴|
+|UI|Initial menu<br>Pause Menu<br>InGame UI<br>Scenes fade|🟢<br>🟢<br>🟢<br>🟢|
 |Level Building|DBGA Game Programming Room|🟢|
 |Lighting|Realtime (Sun, Magic drinks, Microwave, AirDryer)<br>Baked (Magic zone)<br>Mixed (bathroom lights)|🟢<br>🟢<br>🟢|
 |Sounds|Ambient noise<br>Kitchen music<br>Interaction sound FXs<br>Audio mixer sliders|🟢<br>🟢<br>🟢<br>🟢|
