@@ -23817,6 +23817,16 @@ PrefabInstance:
       propertyPath: drinkSpawner
       value: 
       objectReference: {fileID: 381897956}
+    - target: {fileID: 972010879946815277, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860641017574134638, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
+        type: 3}
+      propertyPath: pauseMenuManager
+      value: 
+      objectReference: {fileID: 473016187}
     - target: {fileID: 9069013162803880948, guid: ec82a162bce6276479e4a3fb0ef5cc9d,
         type: 3}
       propertyPath: m_Name

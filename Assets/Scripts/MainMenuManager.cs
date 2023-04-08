@@ -23,6 +23,8 @@ public class MainMenuManager : MonoBehaviour
 	{
         timer = 0;
         fadeIn = true;
+        Time.timeScale = 1f;
+        Cursor.visible = true;
 		if (SavesManager.IsSavePresent(SavesManager.GetSaveFilePath(saveFileName)))
 			continueButton.interactable = true;
 		else

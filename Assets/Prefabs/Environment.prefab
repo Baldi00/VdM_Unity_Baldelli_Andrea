@@ -6191,6 +6191,7 @@ GameObject:
   - component: {fileID: 7738257545042737124}
   - component: {fileID: 233618937187550610}
   - component: {fileID: 7645329025859505766}
+  - component: {fileID: 6860641017574134638}
   - component: {fileID: 8723056018899513013}
   m_Layer: 0
   m_Name: ExitDoor
@@ -6264,6 +6265,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6860641017574134638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972010879946815277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0212cf3ab496e7c49a7df1c0f7624f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &8723056018899513013
 BoxCollider:
   m_ObjectHideFlags: 0
