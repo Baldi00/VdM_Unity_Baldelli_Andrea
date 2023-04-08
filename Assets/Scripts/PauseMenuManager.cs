@@ -15,8 +15,10 @@ public class PauseMenuManager : MonoBehaviour
 	private Slider ambientVolumeSlider;
 	[SerializeField]
 	private Slider musicVolumeSlider;
-	[SerializeField]
-	private Slider effectsVolumeSlider;
+    [SerializeField]
+    private Slider effectsVolumeSlider;
+    [SerializeField]
+    private MainSceneFadeAnimation mainMenuFadeAnimation;
 
     private bool isPaused;
 
@@ -62,7 +64,8 @@ public class PauseMenuManager : MonoBehaviour
     public void GoToMainMenu()
     {
     	Time.timeScale = 1f;
-    	SceneManager.LoadScene("MainMenu");
+        mainMenuFadeAnimation.FadeOut();
+        StartCoroutine(LoadMenuScene());
     }
 
     public void SetAmbientVolume(float value)
@@ -96,5 +99,11 @@ public class PauseMenuManager : MonoBehaviour
     public void SetEffectsVolumeSliderValue(float value)
     {
     	effectsVolumeSlider.value = value;
+    }
+
+    public IEnumerator LoadMenuScene()
+    {
+        yield return new WaitForSecondsRealtime(mainMenuFadeAnimation.fadeAnimationDuration);
+        SceneManager.LoadScene("MainMenu");
     }
 }
