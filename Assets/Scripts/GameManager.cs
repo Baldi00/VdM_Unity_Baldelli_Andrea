@@ -194,6 +194,7 @@ public class GameManager : MonoBehaviour
 
             AddDrink(drink.transform, drinkInfo);
         }
+        currentGameState.drinksInfo.Clear();
 
         audioMixer.SetFloat("AmbientVolume", Mathf.Log10(currentGameState.ambientVolume) * 20);
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(currentGameState.musicVolume) * 20);
