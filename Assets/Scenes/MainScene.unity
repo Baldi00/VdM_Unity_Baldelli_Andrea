@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveFileName: save0
   blackBoardTextureFileName: bbtex.png
-  player: {fileID: 2066726824}
+  player: {fileID: 2066726825}
   pcs:
   - {fileID: 1678971361}
   - {fileID: 252086815}

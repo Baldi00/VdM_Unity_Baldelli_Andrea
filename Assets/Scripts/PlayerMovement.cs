@@ -62,6 +62,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets the player position
+    /// </summary>
+    /// <param name="position">The position the player will be placed</param>
+    public void SetPlayerPosition(Vector3 position)
+    {
+        characterController.enabled = false;
+        transform.position = position;
+        characterController.enabled = true;
+    }
+
+    /// <summary>
     /// Updates the player position based on the set values from the input manager
     /// </summary>
     private void UpdatePlayerPosition()

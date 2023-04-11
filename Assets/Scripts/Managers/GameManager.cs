@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private string blackBoardTextureFileName;
 
     [SerializeField]
-    private Transform player;
+    private PlayerMovement player;
 
     [SerializeField]
     private ComputerInteraction[] pcs;
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Save()
     {
-        currentGameState.playerPosition = player.position;
+        currentGameState.playerPosition = player.transform.position;
         SaveDrinkPositions();
         SavesManager.SaveState(saveFileName, currentGameState);
 
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void ApplySavesInGame()
     {
-        player.position = currentGameState.playerPosition;
+        player.SetPlayerPosition(currentGameState.playerPosition);
 
         // Apply interactable objects states
         for (int i = 0; i < currentGameState.pcsState.Length; i++)
