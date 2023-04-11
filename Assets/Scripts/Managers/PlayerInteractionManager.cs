@@ -10,6 +10,10 @@ public class PlayerInteractionManager : MonoBehaviour
 
 	private Ray ray;
 	private IInteractable currentInteractableObject;
+	private bool interact;
+	private bool interactContinuously;
+	private bool stopInteractingContinuously;
+	private bool secondaryInteraction;
 
 	void Update()
 	{
@@ -37,13 +41,18 @@ public class PlayerInteractionManager : MonoBehaviour
 			currentInteractableObject = null;
 		}
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentInteractableObject != null)
+        if (interact && currentInteractableObject != null)
             currentInteractableObject.Interact();
-        if (Input.GetKey(KeyCode.Mouse0) && currentInteractableObject != null)
+        if (interactContinuously && currentInteractableObject != null)
             currentInteractableObject.InteractContinuously();
-        if (Input.GetKeyUp(KeyCode.Mouse0) && currentInteractableObject != null)
+        if (stopInteractingContinuously && currentInteractableObject != null)
             currentInteractableObject.StopContinuousInteraction();
-        if (Input.GetKeyDown(KeyCode.Mouse1) && currentInteractableObject != null)
+        if (secondaryInteraction && currentInteractableObject != null)
             currentInteractableObject.SecondaryInteraction();
     }
+
+	public void SetInteract(bool interact) => this.interact = interact;
+	public void SetInteractContinuously(bool interactContinuously) => this.interactContinuously = interactContinuously;
+	public void SetStopInteractingContinuously(bool stopInteractingContinuously) => this.stopInteractingContinuously = stopInteractingContinuously;
+	public void SetSecondaryInteraction(bool secondaryInteraction) => this.secondaryInteraction = secondaryInteraction;
 }

@@ -5,6 +5,8 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerMovement;
+    [SerializeField]
+    private PlayerInteractionManager playerInteractionManager;
 
     private float horizontalInput;
     private float verticalInput;
@@ -44,5 +46,10 @@ public class InputManager : MonoBehaviour
             playerMovement.SetNextCameraRotation(mouseX, mouseY);
             playerMovement.SetNextPlayerPosition(currentHorizontal, currentVertical);
         }
+
+        playerInteractionManager.SetInteract(Input.GetKeyDown(KeyCode.Mouse0));
+        playerInteractionManager.SetInteractContinuously(Input.GetKey(KeyCode.Mouse0));
+        playerInteractionManager.SetStopInteractingContinuously(Input.GetKeyUp(KeyCode.Mouse0));
+        playerInteractionManager.SetSecondaryInteraction(Input.GetKeyDown(KeyCode.Mouse1));
     }
 }

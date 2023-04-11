@@ -12,6 +12,10 @@ public class DrinkSpawner : MonoBehaviour
     [SerializeField]
     private bool magicDrinkSpawner;
 
+    /// <summary>
+    /// Spawns a new drink in random direction with random color
+    /// Adds a light with the same color if is a magic drink
+    /// </summary>
     public void Spawn()
 	{
         GameObject drink = Instantiate(drinkPrefab, transform.position, Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));

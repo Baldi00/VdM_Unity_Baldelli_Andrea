@@ -981,6 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 2066726825}
+  playerInteractionManager: {fileID: 2066726826}
 --- !u!4 &266756319
 Transform:
   m_ObjectHideFlags: 0
