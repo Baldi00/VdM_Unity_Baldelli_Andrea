@@ -21,6 +21,7 @@ public class PauseMenuManager : MonoBehaviour
     private MainSceneFadeAnimation mainMenuFadeAnimation;
 
     private bool isPaused;
+    private bool ignoreInput;
 
     void Update()
     {
@@ -45,6 +46,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Resume()
     {
+        if(ignoreInput)
+            return;
+
     	GameManager.Instance.IsPaused = false;
     	Cursor.visible = false;
     	pauseMenu.SetActive(false);
@@ -53,16 +57,28 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Save()
     {
+        if(ignoreInput)
+            return;
+
     	GameManager.Instance.Save();
     }
 
     public void Exit()
     {
+        if(ignoreInput)
+            return;
+        ignoreInput = true;
+
     	Application.Quit();
     }
 
     public void GoToMainMenu()
     {
+        if(ignoreInput)
+            return;
+        ignoreInput = true;
+        
+        pauseMenu.SetActive(false);
     	Time.timeScale = 1f;
         mainMenuFadeAnimation.FadeOut();
         StartCoroutine(LoadMenuScene());

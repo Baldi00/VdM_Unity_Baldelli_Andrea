@@ -18,6 +18,7 @@ public class MainMenuManager : MonoBehaviour
 
     private float timer;
     private bool fadeIn;
+    private bool ignoreInput;
 
 	void Awake()
 	{
@@ -29,6 +30,7 @@ public class MainMenuManager : MonoBehaviour
 			continueButton.interactable = true;
 		else
             continueButton.interactable = false;
+        ignoreInput = false;
     }
 
     void Update()
@@ -50,6 +52,10 @@ public class MainMenuManager : MonoBehaviour
 
 	public void NewGame()
     {
+        if(ignoreInput)
+            return;
+        ignoreInput = true;
+
         SavesManager.DeleteSaves(saveFileName);
         SavesManager.DeleteSaves(savedBlackboardTextureFileName);
         loadingScreen.SetActive(true);
@@ -59,6 +65,10 @@ public class MainMenuManager : MonoBehaviour
 
     public void Continue()
     {
+        if(ignoreInput)
+            return;
+        ignoreInput = true;
+
         loadingScreen.SetActive(true);
         fadeIn = false;
         StartCoroutine(LoadMainScene());
@@ -66,6 +76,10 @@ public class MainMenuManager : MonoBehaviour
 
     public void Exit()
     {
+        if(ignoreInput)
+            return;
+        ignoreInput = true;
+        
         Application.Quit();
     }
 
