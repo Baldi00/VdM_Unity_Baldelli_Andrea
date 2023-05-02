@@ -45,5 +45,10 @@ public class SavesManager
 
     public static string GetSaveFilePath(string fileName) => Path.Combine(Application.persistentDataPath, "save", fileName);
 
-    public static void DeleteSaves(string fileName) => File.Delete(GetSaveFilePath(fileName));
+    public static void DeleteSaves(string fileName)
+    {
+    	string path = GetSaveFilePath(fileName);
+        if (File.Exists(path))
+        	File.Delete(path);
+    }
 }
