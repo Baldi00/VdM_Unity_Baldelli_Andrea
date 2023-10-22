@@ -1,7 +1,7 @@
 # VdM_Unity_Baldelli_Andrea
 
 ## Build + Playthrough Link
-https://drive.google.com/drive/folders/1APh0Upubya6-B3GmDQHIrJ4zak6K7Cuv?usp=share_link
+<a href="https://github.com/Baldi00/VdM_Unity_Baldelli_Andrea/releases/tag/v1.0">Download here</a>
 
 ## Requirements and Features
 
